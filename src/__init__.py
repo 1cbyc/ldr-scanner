@@ -1,0 +1,1 @@
+"""LDR Scanner package."""

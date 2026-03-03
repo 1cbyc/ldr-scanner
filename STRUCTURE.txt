@@ -1,0 +1,18 @@
+ldr-scanner/
+|
+|-- src/
+|   |-- __init__.py
+|   |-- scanner.py
+|   |-- ldr_logic.py
+|   |-- data.py
+|   |-- alerts.py
+|
+|-- config/
+|   |-- settings.yaml
+|
+|-- logs/
+|
+|-- requirements.txt
+|-- README.md
+|
+`-- main.py
