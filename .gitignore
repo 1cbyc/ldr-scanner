@@ -1,5 +1,6 @@
 stuff/
 stuff-DO-NOT-DELETE/
+!stuff-DO-NOT-DELETE/how-it-works.txt
 
 __pycache__/
 *.py[cod]
