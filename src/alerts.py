@@ -13,8 +13,6 @@ LOGGER = logging.getLogger(__name__)
 
 
 class AlertState:
-    """Stores setup IDs to prevent duplicate alerts across scan cycles."""
-
     def __init__(self, state_file: str):
         self.path = Path(state_file)
         self.path.parent.mkdir(parents=True, exist_ok=True)

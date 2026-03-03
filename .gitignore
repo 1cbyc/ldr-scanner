@@ -1,35 +1,27 @@
-#1cbyc
 stuff/
 stuff-DO-NOT-DELETE/
 
-# Python bytecode
 __pycache__/
 *.py[cod]
 *$py.class
 
-# Virtual environments
 .venv/
 venv/
 env/
 
-# Tooling caches
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
 
-# Local environment files
 .env
 .env.*
 
-# Logs and runtime state
 logs/*.log
 logs/alert_state.json
 *.pid
 
-# IDE/editor
 .vscode/
 .idea/
 
-# OS files
 .DS_Store
 Thumbs.db

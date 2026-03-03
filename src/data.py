@@ -35,7 +35,6 @@ class MT5Client:
         self._connected = False
 
     def connect(self) -> None:
-        """Initialize terminal and authenticate session."""
         kwargs = {}
         if self.config.path:
             kwargs["path"] = self.config.path

@@ -1,10 +1,5 @@
 mt5:
-  # Optional explicit terminal path, example:
-  # path: "C:/Program Files/MetaTrader 5/terminal64.exe"
-  # Optional env override: MT5_PATH
   path:
-  # If your MT5 terminal is already logged in, login/password/server can be omitted.
-  # Optional env overrides: MT5_LOGIN, MT5_PASSWORD, MT5_SERVER
   login:
   password:
   server:
@@ -25,12 +20,10 @@ scanner:
 strategy:
   atr_period: 14
   displacement_atr_multiplier: 1.5
-  # Must be 3 or 5 (fractal confirmation window)
   fractal_window: 5
 
 telegram:
-  enabled: false
-  # Optional env overrides: TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID
+  enabled: true
   token: ""
   chat_id: ""
   timeout_sec: 10

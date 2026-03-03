@@ -3,8 +3,7 @@
 Event-based liquidity scanner implementing strict, non-discretionary **Liquidity -> Displacement -> Retracement (LDR)** logic across MT5 symbols/timeframes.
 
 
-
-## LDR Rules Implemented
+## LDR Rules I Implemented
 
 ### Bearish LDR
 

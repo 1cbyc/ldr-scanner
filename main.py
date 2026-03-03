@@ -48,7 +48,6 @@ def load_config(path: str) -> Dict[str, Any]:
 
 
 def apply_env_overrides(cfg: Dict[str, Any]) -> Dict[str, Any]:
-    """Override sensitive config values from environment variables."""
     mt5_cfg = cfg.setdefault("mt5", {})
     telegram_cfg = cfg.setdefault("telegram", {})
 

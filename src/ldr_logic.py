@@ -57,7 +57,6 @@ def add_swings(df: pd.DataFrame, fractal_window: int = 5) -> pd.DataFrame:
     out["is_swing_high"] = out["is_swing_high"].fillna(False)
     out["is_swing_low"] = out["is_swing_low"].fillna(False)
 
-    # Swing is only confirmed after future candles close.
     out["swing_confirmation_shift"] = center
     return out
 
@@ -118,7 +117,6 @@ def detect_ldr_signal(
     work = add_swings(work, fractal_window=fractal_window)
 
     center = (fractal_window - 1) // 2
-    # Exclude newest forming bar and bars that cannot have confirmed swings yet.
     end_idx = len(work) - 2 - center
     if end_idx <= atr_period:
         return []
@@ -187,7 +185,6 @@ def detect_ldr_signal(
                         )
                     )
 
-    # Return only newest signal per direction to reduce alert noise.
     dedup: Dict[str, LDRSignal] = {}
     for s in signals:
         dedup[f"{s.symbol}:{s.timeframe}:{s.direction}"] = s
