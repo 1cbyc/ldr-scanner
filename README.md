@@ -6,21 +6,7 @@ Real-time event-driven liquidity scanner implementing strict mechanical LDR logi
 
 The previous MT5-based implementation has been moved to:
 
-- `/Users/nsisong/projects/ldr-scanner/v2026.1`
-
-## Project Structure
-
-- `/Users/nsisong/projects/ldr-scanner/src/config.py`
-- `/Users/nsisong/projects/ldr-scanner/src/data_stream.py`
-- `/Users/nsisong/projects/ldr-scanner/src/candle_builder.py`
-- `/Users/nsisong/projects/ldr-scanner/src/structure.py`
-- `/Users/nsisong/projects/ldr-scanner/src/indicators.py`
-- `/Users/nsisong/projects/ldr-scanner/src/ldr_logic.py`
-- `/Users/nsisong/projects/ldr-scanner/src/scanner.py`
-- `/Users/nsisong/projects/ldr-scanner/src/alerts.py`
-- `/Users/nsisong/projects/ldr-scanner/config/settings.yaml`
-- `/Users/nsisong/projects/ldr-scanner/main.py`
-- `/Users/nsisong/projects/ldr-scanner/requirements.txt`
+- `/ldr-scanner/v2026.1`
 
 ## Strategy Logic
 
@@ -42,7 +28,7 @@ Bullish logic is the exact inverse.
 ## Environment Setup
 
 ```bash
-cd /Users/nsisong/projects/ldr-scanner
+cd ldr-scanner
 python3.11 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
@@ -61,7 +47,7 @@ export OANDA_ACCOUNT_ID="your_account_id"
 export OANDA_ENVIRONMENT="practice"
 ```
 
-You can also place values in `/Users/nsisong/projects/ldr-scanner/config/settings.yaml`, but environment variables are recommended for production.
+You can also place values in `/config/settings.yaml`, but environment variables are recommended for production.
 
 ## Telegram Setup
 
@@ -85,7 +71,7 @@ export TELEGRAM_CHAT_ID="your_chat_id"
 
 ## Configure Scanner
 
-Edit `/Users/nsisong/projects/ldr-scanner/config/settings.yaml` for:
+Edit `ldr-scanner/config/settings.yaml` for:
 
 - `scanner.instruments`
 - `strategy.atr_multiplier`
@@ -96,7 +82,7 @@ Edit `/Users/nsisong/projects/ldr-scanner/config/settings.yaml` for:
 ## Run
 
 ```bash
-cd /Users/nsisong/projects/ldr-scanner
+cd ldr-scanner
 source .venv/bin/activate
 python main.py
 ```
@@ -104,7 +90,7 @@ python main.py
 ## Run In Background
 
 ```bash
-cd /Users/nsisong/projects/ldr-scanner
+cd ldr-scanner
 source .venv/bin/activate
 nohup python main.py > logs/nohup.out 2>&1 &
 ```
@@ -157,7 +143,7 @@ BOS: Confirmed
 Pullback Zone: 5285 – 5295
 ```
 
-## Notes
+## Please understand that...
 
 - Scanner evaluates only closed candles.
 - Streaming connection auto-reconnects with exponential backoff.
