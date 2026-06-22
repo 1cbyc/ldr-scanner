@@ -1,4 +1,5 @@
 from typing import List, Optional
+from decimal import Decimal
 from datetime import datetime, timezone
 from app.core.models import Candle
 from app.strategy.ldr.models import (
@@ -11,7 +12,7 @@ from app.strategy.ldr.fvg_detector import FVGDetector
 from app.strategy.ldr.order_block_detector import OrderBlockDetector
 from app.strategy.ldr.entry_zone_detector import EntryZoneDetector
 from app.strategy.ldr.invalidation import InvalidationRules
-from app.core.enums import SetupStatus, Direction
+from app.core.enums import SetupStatus, Direction, SweptSide
 from pydantic import BaseModel
 
 class LDRSetupCandidate(BaseModel):
@@ -59,19 +60,19 @@ class LDRStrategyEngine:
         if not sweep:
             return LDRSetupCandidate(
                 symbol=symbol,
-                direction=Direction.BULLISH, # Arbitrary since we only have a range
+                direction=Direction.BULLISH,  # Arbitrary — range only, no sweep yet
                 status=SetupStatus.OBSERVING_RANGE,
                 score=drange.quality_score,
                 drange=drange,
                 sweep=LiquiditySweep(
                     direction_after_sweep=Direction.BULLISH,
-                    swept_side=drange.high,
+                    swept_side=SweptSide.BUY_SIDE,  # Placeholder — no real sweep yet
                     swept_level=drange.high,
                     sweep_candle_time=datetime.now(timezone.utc),
                     sweep_candle_high=drange.high,
                     sweep_candle_low=drange.low,
-                    sweep_distance=0,
-                    wick_rejection_ratio=0,
+                    sweep_distance=Decimal("0"),
+                    wick_rejection_ratio=0.0,
                     close_reclaimed=False,
                     quality_score=0
                 )
