@@ -2,8 +2,7 @@ import pandas as pd
 from typing import List
 from pathlib import Path
 from decimal import Decimal
-from datetime import datetime
-import pytz
+from datetime import datetime, timezone
 
 from app.core.models import Candle
 from app.core.enums import Timeframe
