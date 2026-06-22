@@ -1,6 +1,6 @@
 # LDR Scanner
 
-A production-quality, broker-independent scanner for Liquidity Displacement Reversal (LDR) setups. 
+I bult a broker independent scanner for Liquidity Displacement Reversal (LDR) setups. I trade financial markets with LDR, so I decided to build a means to get setups.
 
 ## Features
 - Detects market ranges, sweeps, displacements, FVGs, order blocks, and mitigation zones.
