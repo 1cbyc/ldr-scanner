@@ -152,12 +152,12 @@ def _entry(direction, upper, lower, invalidation, target, rr):
 
 
 # ---------------------------------------------------------------------------
-# Sample setups — every alert type the scanner can send
+# Sample setups - every alert type the scanner can send
 # ---------------------------------------------------------------------------
 
 def build_samples():
     return [
-        # ---- XAU/USD BULLISH — Mitigation Pending ----
+        # ---- XAU/USD BULLISH - Mitigation Pending ----
         # Displacement happened, entry zone exists, price not yet retraced.
         # Message: "Wait for mitigation."
         LDRSetupCandidate(
@@ -175,7 +175,7 @@ def build_samples():
             estimated_rr=5.2,
         ),
 
-        # ---- XAU/USD BULLISH — Entry Zone Touched ----
+        # ---- XAU/USD BULLISH - Entry Zone Touched ----
         # Price has retraced into the mitigation zone. Look for LTF trigger.
         LDRSetupCandidate(
             symbol="XAU/USD",
@@ -192,7 +192,7 @@ def build_samples():
             estimated_rr=5.2,
         ),
 
-        # ---- XAU/USD BEARISH — Mitigation Pending ----
+        # ---- XAU/USD BEARISH - Mitigation Pending ----
         LDRSetupCandidate(
             symbol="XAU/USD",
             direction=Direction.BEARISH,
@@ -208,7 +208,7 @@ def build_samples():
             estimated_rr=4.8,
         ),
 
-        # ---- XAU/USD BEARISH — Entry Zone Touched ----
+        # ---- XAU/USD BEARISH - Entry Zone Touched ----
         LDRSetupCandidate(
             symbol="XAU/USD",
             direction=Direction.BEARISH,
@@ -224,7 +224,7 @@ def build_samples():
             estimated_rr=4.8,
         ),
 
-        # ---- NDX BULLISH — Mitigation Pending ----
+        # ---- NDX BULLISH - Mitigation Pending ----
         LDRSetupCandidate(
             symbol="NDX",
             direction=Direction.BULLISH,
@@ -240,7 +240,7 @@ def build_samples():
             estimated_rr=5.8,
         ),
 
-        # ---- NDX BEARISH — Entry Zone Touched ----
+        # ---- NDX BEARISH - Entry Zone Touched ----
         LDRSetupCandidate(
             symbol="NDX",
             direction=Direction.BEARISH,

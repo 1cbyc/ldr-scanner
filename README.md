@@ -8,9 +8,9 @@ This is a detection and alerting tool. I did not build it to place trades.
 
 - Detects market ranges, liquidity sweeps, displacements, FVGs, order blocks, and mitigation zones.
 - Scores setups out of 100 based on structural quality.
-- Alerts to Telegram when high-quality setups form — two states: mitigation pending, and price in entry zone.
+- Alerts to Telegram when high-quality setups form - two states: mitigation pending, and price in entry zone.
 - Fully asynchronous architecture (FastAPI + PostgreSQL + Redis + arq workers).
-- Pure Python 3.12+ — no MT5 or Windows dependencies.
+- Pure Python 3.12+ - no MT5 or Windows dependencies.
 - Integrated backtesting engine over CSV data.
 - Live market data via TwelveData API.
 
@@ -32,7 +32,7 @@ cd ldr-scanner
 
 # 2. Create your environment file from the example
 cp .env.example .env
-# Fill in your values — especially TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID,
+# Fill in your values - especially TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID,
 # TWELVEDATA_API_KEY, and DATABASE_URL.
 
 # 3. Start local infrastructure
@@ -65,10 +65,9 @@ python send_sample_alerts.py
 
 ---
 
-## VPS Deployment
+## VM Deployment
 
 The project is deployed to a remote server using `rsync` over SSH.  
-No credentials or secrets are ever committed to Git.
 
 ### One-time setup on the VPS
 
@@ -136,7 +135,7 @@ sudo loginctl enable-linger <your-user>
 After making changes locally, sync the code to the VPS and restart the services:
 
 ```bash
-# Sync code — secrets in .env are excluded automatically
+# Sync code - secrets in .env are excluded automatically
 rsync -az --delete \
   --exclude '.git' \
   --exclude '.venv' \
@@ -194,7 +193,7 @@ All configuration is driven by `.env`. See `.env.example` for the full list with
 
 The scanner sends two types of Telegram messages per setup:
 
-1. **Mitigation Pending** — displacement has occurred and an entry zone exists. Price has not yet retraced. The message says to wait.
-2. **Entry Zone Touched** — price has retraced into the mitigation zone. The message prompts for a lower-timeframe execution trigger.
+1. **Mitigation Pending** - displacement has occurred and an entry zone exists. Price has not yet retraced. The message says to wait.
+2. **Entry Zone Touched** - price has retraced into the mitigation zone. The message prompts for a lower-timeframe execution trigger.
 
 Run `python send_sample_alerts.py` to see both types for both instruments sent to your Telegram chat.
