@@ -1,6 +1,6 @@
 import asyncio
 import logging
-from arq import worker
+from arq import cron
 from arq.connections import RedisSettings
 from app.config import settings
 from app.strategy.ldr.engine import LDRStrategyEngine
@@ -65,6 +65,6 @@ async def scan_market(ctx):
 class WorkerSettings:
     functions = [scan_market]
     cron_jobs = [
-        worker.cron(scan_market, second={0}),  # Fires once per minute; interval is SCAN_INTERVAL_SECONDS
+        cron(scan_market, second={0}),  # Fires once per minute; interval is SCAN_INTERVAL_SECONDS
     ]
     redis_settings = RedisSettings.from_dsn(settings.REDIS_URL)
