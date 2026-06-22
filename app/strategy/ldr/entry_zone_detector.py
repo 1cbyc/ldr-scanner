@@ -2,6 +2,7 @@ from typing import Optional
 from decimal import Decimal
 from app.strategy.ldr.models import FairValueGap, OrderBlock, EntryZone, LiquiditySweep
 from app.core.enums import Direction, EntryZoneSource
+from app.config import settings
 
 class EntryZoneDetector:
     def detect(
@@ -44,11 +45,16 @@ class EntryZoneDetector:
             
         midpoint = lower + ((upper - lower) / Decimal('2'))
         
-        # Calculate base invalidation level
+        # Calculate base invalidation level.
+        # The buffer is a configurable multiple of ATR (INVALIDATION_ATR_BUFFER, default 0.1),
+        # anchored to the sweep candle's high/low. This prevents the buffer being a
+        # meaningless fixed pip value regardless of the instrument's volatility.
+        # The sweep model doesn't carry ATR, so we read the configurable buffer directly.
+        buffer = Decimal(str(settings.INVALIDATION_ATR_BUFFER))
         if direction == Direction.BULLISH:
-            invalidation = sweep.sweep_candle_low - Decimal('0.5') # Small buffer
+            invalidation = sweep.sweep_candle_low - buffer
         else:
-            invalidation = sweep.sweep_candle_high + Decimal('0.5')
+            invalidation = sweep.sweep_candle_high + buffer
             
         return EntryZone(
             direction=direction,
@@ -59,5 +65,5 @@ class EntryZoneDetector:
             invalidation_level=invalidation,
             target_level=Decimal('0'), # Target calculated in Risk module
             estimated_rr=0.0,
-            quality_score=15 if source == EntryZoneSource.OVERLAP else 10
+            quality_score=settings.ENTRY_ZONE_OVERLAP_SCORE if source == EntryZoneSource.OVERLAP else settings.ENTRY_ZONE_BASE_SCORE
         )

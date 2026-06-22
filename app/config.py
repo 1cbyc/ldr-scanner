@@ -5,8 +5,8 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8", extra="ignore")
 
     APP_ENV: str = "development"
-    DATABASE_URL: str = "postgresql+asyncpg://postgres:password@localhost:5432/ldr_scanner"
-    REDIS_URL: str = "redis://localhost:6379/0"
+    DATABASE_URL: str = ""
+    REDIS_URL: str = ""
 
     DATA_PROVIDER: str = "csv"
     TWELVEDATA_API_KEY: str = ""
@@ -29,6 +29,32 @@ class Settings(BaseSettings):
     SWEEP_MAX_ATR_MULTIPLE: float = 1.5
     DISPLACEMENT_MIN_ATR_MULTIPLE: float = 1.2
     SETUP_EXPIRY_CANDLES: int = 24
+
+    # Invalidation buffer added to the sweep level when computing the stop price.
+    # This is a raw price unit value (e.g. 0.5 = half a point on Gold).
+    # Set it to a meaningful value for each instrument via the .env file.
+    INVALIDATION_ATR_BUFFER: float = 0.5
+
+    # Fraction of ATR that a counter-move candle body must exceed before it
+    # is considered a displacement failure and scanning stops early.
+    DISPLACEMENT_REJECTION_ATR_FRACTION: float = 0.5
+
+    # Scoring constants for the entry zone detector.
+    ENTRY_ZONE_OVERLAP_SCORE: int = 15
+    ENTRY_ZONE_BASE_SCORE: int = 10
+
+    # Scoring constant for the order block detector.
+    ORDER_BLOCK_BASE_SCORE: int = 15
+
+    # Number of candles fetched per symbol/timeframe in each live scan cycle.
+    SCANNER_CANDLE_LIMIT: int = 200
+
+    # Maximum candles to load when running a backtest from CSV.
+    BACKTEST_CANDLE_LIMIT: int = 5000
+
+    # Mock provider base prices per symbol, comma-separated.
+    # Format: "XAUUSD:4300,NAS100:15000,EURUSD:1.09"
+    MOCK_BASE_PRICES: str = "XAUUSD:4300,NAS100:15000,EURUSD:1.09"
 
     @property
     def symbols_list(self) -> List[str]:

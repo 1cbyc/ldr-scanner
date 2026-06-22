@@ -50,7 +50,7 @@ class DisplacementDetector:
                     broke_micro = True
             elif c.close > c.open:
                 # If strong bullish rejection immediately, displacement fails
-                if (c.close - c.open) > (drange.atr_at_detection * Decimal('0.5')):
+                if (c.close - c.open) > (drange.atr_at_detection * Decimal(str(settings.DISPLACEMENT_REJECTION_ATR_FRACTION))):
                     break
 
         if impulse_candles == 0:
@@ -100,7 +100,7 @@ class DisplacementDetector:
                 if c.close > drange.midpoint:
                     broke_micro = True
             elif c.close < c.open:
-                if (c.open - c.close) > (drange.atr_at_detection * Decimal('0.5')):
+                if (c.open - c.close) > (drange.atr_at_detection * Decimal(str(settings.DISPLACEMENT_REJECTION_ATR_FRACTION))):
                     break
                     
         if impulse_candles == 0:

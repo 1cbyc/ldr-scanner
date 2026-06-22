@@ -2,6 +2,7 @@ from app.data.providers.csv_provider import CSVProvider
 from app.backtesting.replay import ReplayEngine
 from app.backtesting.metrics import calculate_metrics
 from app.core.enums import Timeframe
+from app.config import settings
 from typing import Dict, Any
 import logging
 
@@ -14,7 +15,7 @@ class BacktestRunner:
 
     async def run_backtest(self, symbol: str, timeframe: Timeframe) -> Dict[str, Any]:
         logger.info(f"Loading data for backtest: {symbol} on {timeframe.value}")
-        candles = await self.provider.get_ohlcv(symbol, timeframe, limit=5000)
+        candles = await self.provider.get_ohlcv(symbol, timeframe, limit=settings.BACKTEST_CANDLE_LIMIT)
         
         if not candles:
             logger.warning(f"No candles found for {symbol} on {timeframe.value}")

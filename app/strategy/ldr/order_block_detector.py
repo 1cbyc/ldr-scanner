@@ -3,6 +3,7 @@ from decimal import Decimal
 from app.core.models import Candle
 from app.strategy.ldr.models import Displacement, OrderBlock, LiquiditySweep
 from app.core.enums import Direction
+from app.config import settings
 
 class OrderBlockDetector:
     def detect(self, sweep: LiquiditySweep, displacement: Displacement, candles: List[Candle]) -> Optional[OrderBlock]:
@@ -45,5 +46,5 @@ class OrderBlockDetector:
             close=c.close,
             zone_upper=c.high, # Using entire candle range for OB zone in V1
             zone_lower=c.low,
-            quality_score=15
+            quality_score=settings.ORDER_BLOCK_BASE_SCORE
         )

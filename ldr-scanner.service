@@ -1,0 +1,15 @@
+[Unit]
+Description=LDR Scanner API
+After=network.target
+
+[Service]
+WorkingDirectory=/home/isaac/ldr-scanner
+EnvironmentFile=/home/isaac/ldr-scanner/.env
+ExecStart=/home/isaac/ldr-scanner/.venv/bin/uvicorn app.main:app --host 0.0.0.0 --port 8000
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=default.target
