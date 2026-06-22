@@ -18,6 +18,14 @@ env/
 
 logs/*.log
 logs/alert_state.json
+v2026-1/logs/
+v2026-1/logs/*
+v2026-1/.env
+v2026-1/.env.*
+v2026-1/.DS_Store
+v2026-1/config/*.yaml
+v2026-1/config/*.yml
+v2026-1/*.log
 *.pid
 
 .vscode/
