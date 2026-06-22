@@ -33,3 +33,7 @@ v2026-1/*.log
 
 .DS_Store
 Thumbs.db
+
+# Markdown Files
+*.md
+!README.md
